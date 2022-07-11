@@ -8,11 +8,12 @@ using DATN_Back_end.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using SixLabors.ImageSharp;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace DATN_Back_end.Repositories
 {
@@ -150,8 +151,8 @@ namespace DATN_Back_end.Repositories
             var imageData = urlOrBase64.Substring(urlOrBase64.IndexOf(base64Header) + base64Header.Length);
             var fileData = Convert.FromBase64String(imageData);
 
-            using var memoryStream = new MemoryStream(fileData);
-            var img = Image.FromStream(memoryStream);
+            //using var memoryStream = new MemoryStream(fileData);
+            var img = Image.Load<Rgba32>(fileData);
 
             var resizedImage = img.EnsureLimitSize(cloudinaryConfig.CoverLimitHeight, cloudinaryConfig.CoverLimitWidth);
 

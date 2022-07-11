@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 
 namespace DATN_Back_end.Extensions
 {
@@ -14,7 +14,7 @@ namespace DATN_Back_end.Extensions
         {
             using (var ms = new MemoryStream())
             {
-                image.Save(ms, ImageFormat.Jpeg);
+                image.SaveAsJpeg(ms);
                 return ms.ToArray();
             }
         }
@@ -30,7 +30,9 @@ namespace DATN_Back_end.Extensions
 
             var scale = Math.Max(scaleWidth, scaleHeight);
 
-            return new Bitmap(image, (int)(image.Width / scale), (int)(image.Height / scale));
+            image.Mutate(x => x.Resize((int)(image.Width / scale), (int)(image.Height / scale)));
+
+            return image;
         }
     }
 }
