@@ -31,6 +31,7 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.0" />
     <PackageReference Include="openssl-vc140-vc141-x86_64" Version="1.1.5" />
     <PackageReference Include="openssl-vc141-static-x86_64" Version="1.1.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
     <PackageReference Include="System.Security.Cryptography.OpenSsl" Version="5.0.0" />
