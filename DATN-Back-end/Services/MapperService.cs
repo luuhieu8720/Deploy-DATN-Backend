@@ -3,6 +3,7 @@ using DATN_Back_end.Dto.DtoComment;
 using DATN_Back_end.Dto.DtoDepartment;
 using DATN_Back_end.Dto.DtoFormRequest;
 using DATN_Back_end.Dto.DtoReport;
+using DATN_Back_end.Dto.DtoRequestType;
 using DATN_Back_end.Dto.DtoStatus;
 using DATN_Back_end.Dto.DtoTimeKeeping;
 using DATN_Back_end.Dto.DtoUser;
@@ -84,6 +85,10 @@ namespace DATN_Back_end.Services
             cfg.CreateMap<ReportForm, Report>();
             cfg.CreateMap<ReportForm, ReportFormDto>();
             cfg.CreateMap<ReportFormDto, Report>();
+
+            cfg.CreateMap<RequestType, RequestTypeItem>();
+            cfg.CreateMap<RequestType, RequestTypeDetail>();
+            cfg.CreateMap<RequestTypeForm, RequestType>();
 
             cfg.CreateMap<TimeKeepingForm, Timekeeping>();
             cfg.CreateMap<Timekeeping, TimeKeepingItem>()

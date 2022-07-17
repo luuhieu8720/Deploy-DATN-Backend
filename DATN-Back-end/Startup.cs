@@ -52,6 +52,7 @@ namespace DATN_Back_end
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IRequestTypeRepository, RequestTypeRepository>();
             services.AddScoped<IFormStatusRepository, FormStatusRepository>();
             services.AddScoped<IFormRequestRepository, FormRequestRepository>();
             services.AddScoped<ICommentRepository, CommentRepository>();
