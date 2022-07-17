@@ -22,7 +22,7 @@ namespace DATN_Back_end.Repositories
 
         public async Task Create(FormRequestForm formRequest)
         {
-            formRequest.RequestDate = DateTime.Parse(formRequest.RequestDate.ToString()).ToLocalTime();
+            //formRequest.RequestDate = DateTime.Parse(formRequest.RequestDate.ToString()).ToLocalTime();
             formRequest.SubmittedTime = DateTime.Now;
 
             await base.Create(formRequest);
