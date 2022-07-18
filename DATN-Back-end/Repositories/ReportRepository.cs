@@ -154,9 +154,7 @@ namespace DATN_Back_end.Repositories
             //using var memoryStream = new MemoryStream(fileData);
             var img = Image.Load<Rgba32>(fileData);
 
-            var resizedImage = img.EnsureLimitSize(cloudinaryConfig.CoverLimitHeight, cloudinaryConfig.CoverLimitWidth);
-
-            var dataUpload = resizedImage.ImageToByteArray();
+            var dataUpload = img.ImageToByteArray();
 
             var uploadResult = await cloudinaryService.UploadImage(imageName, dataUpload);
 
