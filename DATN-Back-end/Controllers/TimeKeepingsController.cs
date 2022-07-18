@@ -47,6 +47,10 @@ namespace DATN_Back_end.Controllers
         public async Task Checkout([FromBody] TimeKeepingForm timeKeepingForm) => await timeKeepingRepository.CheckOut(timeKeepingForm);
 
         [Authorize]
+        [HttpDelete]
+        public async Task Delete(Guid id) => await repository.Delete(id);
+
+        [Authorize]
         [HttpGet("{userId}")]
         public async Task<List<TimeKeepingItem>> GetTimeKeepingInfos(Guid userId) => await timeKeepingRepository.GetTimeKeepingInfos(userId);
 
