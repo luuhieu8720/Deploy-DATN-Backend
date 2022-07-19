@@ -70,7 +70,7 @@ namespace DATN_Back_end.Repositories
                 .Where(x => x.Id == timeKeepingForm.UserId)
                 .FirstOrDefaultAsync();
 
-            if (report == null && user.Role != Role.Admin)
+            if (report == null && user.Role == Role.Employee)
             {
                 throw new BadRequestException("You have to send report before checking out");
             }
