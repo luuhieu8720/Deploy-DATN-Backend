@@ -54,7 +54,17 @@ namespace DATN_Back_end.Repositories
                 throw new BadRequestException("Manager must be placed in at least 1 department");
             }
 
-            await base.Create(userForm);
+            var user = userForm.ConvertTo<User>();
+
+            await dataContext.Users.AddAsync(user);
+
+            await dataContext.SaveChangesAsync();
+
+            entry.ManagerId = user.Id;
+
+            dataContext.Entry(entry).State = EntityState.Modified;
+
+            await dataContext.SaveChangesAsync();
         }
 
         public async Task Update(Guid id, UserFormUpdate userForm)

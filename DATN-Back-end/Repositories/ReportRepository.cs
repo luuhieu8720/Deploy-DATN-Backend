@@ -51,6 +51,8 @@ namespace DATN_Back_end.Repositories
         {
             return await dataContext.Reports
                 .Include(x => x.Comments)
+                .Include(x => x.User)
+                .ThenInclude(x => x.Department)
                 .Select(x => x.ConvertTo<ReportItem>())
                 .ToListAsync();
         }
@@ -60,6 +62,7 @@ namespace DATN_Back_end.Repositories
             var entry = await dataContext.Reports
                 .Include(x => x.Comments)
                 .Include(x => x.User)
+                .ThenInclude(x => x.Department)
                 .Where(x => x.Id == id)
                 .Select(x => x.ConvertTo<ReportDetail>())
                 .FirstOrDefaultAsync();
@@ -79,8 +82,9 @@ namespace DATN_Back_end.Repositories
                 .Include(x => x.User).ToListAsync();
 
             var res = await dataContext.Reports
-                .Include(x => x.User)
                 .Include(x => x.Comments)
+                .Include(x => x.User)
+                .ThenInclude(x => x.Department)
                 .Where(x => (reportsFilter.DepartmentId.HasValue ? x.User.DepartmentId == reportsFilter.DepartmentId.Value
                 : x != null))
                 .Where(x => reportsFilter.UserId.HasValue ? x.UserId == reportsFilter.UserId.Value
@@ -106,6 +110,7 @@ namespace DATN_Back_end.Repositories
                     && x.CreatedTime.Year == dateTime.Year)
                 .Include(x => x.Comments)
                 .Include(x => x.User)
+                .ThenInclude(x => x.Department)
                 .Select(x => x.ConvertTo<ReportDetail>())
                 .FirstOrDefaultAsync();
         }
@@ -118,6 +123,7 @@ namespace DATN_Back_end.Repositories
                 .Where(x => x.UserId == currentUserId)
                 .Include(x => x.Comments)
                 .Include(x => x.User)
+                .ThenInclude(x => x.Department)
                 .Select(x => x.ConvertTo<ReportItem>())
                 .ToListAsync();
         }

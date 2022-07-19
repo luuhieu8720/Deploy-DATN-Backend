@@ -13,6 +13,8 @@ namespace DATN_Back_end.Dto.DtoFilter
 
         public int? FormStatusId { get; set; }
 
+        public int? TypeId { get; set; }
+
         public DateTime? DateTime { get; set; }
     }
 }

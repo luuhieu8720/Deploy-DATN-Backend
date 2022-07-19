@@ -59,6 +59,22 @@ namespace DATN_Back_end.Repositories
 
         public async Task CheckOut(TimeKeepingForm timeKeepingForm)
         {
+            var report = await dataContext.Reports
+                .Where(x => x.UserId == timeKeepingForm.UserId
+                && x.CreatedTime.Date == timeKeepingForm.CheckoutTime.Value.Date
+                && x.CreatedTime.Month == timeKeepingForm.CheckoutTime.Value.Month
+                && x.CreatedTime.Year == timeKeepingForm.CheckoutTime.Value.Year)
+                .FirstOrDefaultAsync();
+
+            var user = await dataContext.Users
+                .Where(x => x.Id == timeKeepingForm.UserId)
+                .FirstOrDefaultAsync();
+
+            if (report == null && user.Role != Role.Admin)
+            {
+                throw new BadRequestException("You have to send report before checking out");
+            }
+
             var entry = await dataContext.Timekeepings
                 .Where(x => x.UserId == timeKeepingForm.UserId &&
                 DateTime.Compare(timeKeepingForm.CheckinTime.Value.Date, x.CheckinTime.Value.Date) == 0)

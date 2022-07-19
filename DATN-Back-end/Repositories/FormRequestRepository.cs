@@ -42,6 +42,8 @@ namespace DATN_Back_end.Repositories
                 : x != null)
                 .Where(x => requestsFilter.FormStatusId.HasValue ? x.FormStatus.Id == requestsFilter.FormStatusId.Value
                 : x != null)
+                .Where(x => requestsFilter.TypeId.HasValue ? x.RequestTypeId == requestsFilter.TypeId.Value
+                : x != null)
                 .Include(x => x.FormStatus)
                 .Include(x => x.RequestType)
                 .Include(x => x.User)
@@ -93,6 +95,8 @@ namespace DATN_Back_end.Repositories
                 && x.SubmittedTime.Year == requestsFilter.DateTime.Value.Year)
                 : x != null)
                 .Where(x => requestsFilter.FormStatusId.HasValue ? x.FormStatus.Id == requestsFilter.FormStatusId.Value
+                : x != null)
+                .Where(x => requestsFilter.TypeId.HasValue ? x.RequestTypeId == requestsFilter.TypeId.Value
                 : x != null)
                 .Include(x => x.FormStatus)
                 .Include(x => x.RequestType)
