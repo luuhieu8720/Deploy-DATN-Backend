@@ -66,7 +66,11 @@ namespace DATN_Back_end.Repositories
                 && x.CreatedTime.Year == timeKeepingForm.CheckoutTime.Value.Year)
                 .FirstOrDefaultAsync();
 
-            if (report == null)
+            var user = await dataContext.Users
+                .Where(x => x.Id == timeKeepingForm.UserId)
+                .FirstOrDefaultAsync();
+
+            if (report == null && user.Role != Role.Admin)
             {
                 throw new BadRequestException("You have to send report before checking out");
             }
