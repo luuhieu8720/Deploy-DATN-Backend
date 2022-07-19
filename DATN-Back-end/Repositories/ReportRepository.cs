@@ -79,8 +79,8 @@ namespace DATN_Back_end.Repositories
                 .Include(x => x.User).ToListAsync();
 
             var res = await dataContext.Reports
-                .Include(x => x.User)
                 .Include(x => x.Comments)
+                .Include(x => x.User)
                 .Where(x => (reportsFilter.DepartmentId.HasValue ? x.User.DepartmentId == reportsFilter.DepartmentId.Value
                 : x != null))
                 .Where(x => reportsFilter.UserId.HasValue ? x.UserId == reportsFilter.UserId.Value
