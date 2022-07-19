@@ -8,6 +8,7 @@ namespace DATN_Back_end.Dto.DtoTimeKeeping
 {
     public class TimeKeepingItem
     {
+        public Guid Id { get; set; }
         public DateTime? CheckinTime { get; set; }
 
         public DateTime? CheckoutTime { get; set; }
